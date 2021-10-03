@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conversor
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: conv-temp
+  template:
+    metadata:
+      labels:
+        app: conv-temp
+    spec:
+      containers:
+      - name: convesor-temp
+        image: rodzadra/conversao-temperatura:v1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
